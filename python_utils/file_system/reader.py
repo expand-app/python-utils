@@ -1,0 +1,80 @@
+import os
+import csv
+import json
+import logging
+import pandas as pd
+
+DEFAULT_ENCODING = 'utf-8'
+DEFAULT_VERBOSE = True
+DEFAULT_EXCEL_SHEET_NAME = 'Sheet1'
+
+# Can be 'ignore', 'replace', or 'backslashreplace'
+DEFAULT_READING_ERROR_HANDLING = 'backslashreplace'
+
+
+def read_json(file_path: str, verbose=DEFAULT_VERBOSE, encoding=DEFAULT_ENCODING):
+    data = None
+
+    if os.path.isfile(file_path):
+        with open(file_path, encoding=encoding, errors=DEFAULT_READING_ERROR_HANDLING) as jsonFile:
+            data = json.load(jsonFile)
+
+            if verbose:
+                logging.info(f"Read JSON data from {file_path}")
+
+    return data
+
+
+def read_html(file_path: str, verbose=DEFAULT_VERBOSE, encoding=DEFAULT_ENCODING):
+    data = None
+
+    if os.path.isfile(file_path):
+        with open(file_path, encoding=encoding, errors=DEFAULT_READING_ERROR_HANDLING) as file:
+            data = ''.join(file.readlines())
+
+        if verbose:
+            logging.info(f"Read HTML data from {file_path}")
+
+    return data
+
+
+def read_text(file_path: str, verbose=DEFAULT_VERBOSE, encoding=DEFAULT_ENCODING):
+    data = None
+
+    if os.path.isfile(file_path):
+        with open(file_path, encoding=encoding, errors=DEFAULT_READING_ERROR_HANDLING) as file:
+            data = ''.join(file.readlines())
+
+        if verbose:
+            logging.info(f"Read TXT data from {file_path}")
+
+    return data
+
+
+def read_csv(file_path: str, verbose=DEFAULT_VERBOSE, encoding=DEFAULT_ENCODING) -> list[dict] | None:
+    data = None
+
+    if os.path.isfile(file_path):
+        with open(file_path, newline='', encoding=encoding, errors=DEFAULT_READING_ERROR_HANDLING) as csvfile:
+            spamreader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
+            data = [row for row in spamreader]
+
+            if verbose:
+                logging.info(
+                    f"Read CSV data from {file_path} with {len(data)} rows")
+
+    return data
+
+
+def read_excel(file_path: str, sheet_name: str = DEFAULT_EXCEL_SHEET_NAME, verbose=DEFAULT_VERBOSE) -> list[dict] | None:
+    data = None
+
+    if os.path.isfile(file_path):
+        df = pd.read_excel(file_path, sheet_name=sheet_name)
+        data = df.to_dict(orient='records')
+
+        if verbose:
+            logging.info(
+                f"Read EXCEL data from {file_path} with {len(data)} rows")
+
+    return data

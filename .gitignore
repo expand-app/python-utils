@@ -1,0 +1,19 @@
+# Misc
+.DS_Store
+.vscode
+
+# Dev
+__pycache__
+.ipynb_checkpoints
+
+# Logs
+logs/*
+
+# Built bundle files
+build
+dist
+
+# Data
+input/*
+output/*
+data/*
