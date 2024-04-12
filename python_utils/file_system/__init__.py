@@ -34,7 +34,7 @@ class FileSystem:
                 return read_json(file_path=path, verbose=verbose, encoding=encoding)
             elif path[-5:] == '.html':
                 return read_html(file_path=path, verbose=verbose, encoding=encoding)
-            elif path[-4:] == '.txt' or path[-4:] == '.log':
+            elif path[-4:] == '.txt' or path[-4:] == '.log' or path[-3:] == '.md':
                 return read_text(file_path=path, verbose=verbose, encoding=encoding)
             elif path[-4:] == '.csv':
                 return read_csv(file_path=path, verbose=verbose, encoding=encoding)
@@ -54,7 +54,7 @@ class FileSystem:
             return write_json(file_path=path, data=data, verbose=verbose, encoding=encoding)
         elif path[-5:] == '.html':
             return write_html(file_path=path, data=data, verbose=verbose, encoding=encoding)
-        elif path[-4:] == '.txt' or path[-4:] == '.log':
+        elif path[-4:] == '.txt' or path[-4:] == '.log' or path[-3:] == '.md':
             return write_text(file_path=path, data=data, verbose=verbose, encoding=encoding)
         elif path[-4:] == '.csv':
             return write_csv(file_path=path, data=data, fieldnames=csv_fieldnames, verbose=verbose, overwrite=csv_and_excel_overwrite, encoding=encoding)
