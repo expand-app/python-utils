@@ -17,3 +17,6 @@ dist
 input/*
 output/*
 data/*
+
+# Virtual environment
+.venv
