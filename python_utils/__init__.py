@@ -6,7 +6,7 @@ from .file_system import FileSystem, read_file, write_file, download_file, unzip
 from .log_query import LogQuerier
 
 __title__ = "python_utils"
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __description__ = "Python utilities"
 
 __license__ = "MIT"
